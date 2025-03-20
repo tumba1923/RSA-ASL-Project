@@ -1,0 +1,117 @@
+<SignLanguageTranslator>:
+    orientation: 'vertical'
+    padding: 20
+    spacing: 20
+
+    canvas.before:
+        Color:
+            rgba: 0.1, 0.1, 0.1, 1  # Dark background
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    Label:
+        text: 'Sign Language Translator'
+        font_size: 40
+        font_name: 'Roboto'
+        size_hint_y: None
+        height: 60
+        color: 1, 1, 1, 1  # White text
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 300
+        spacing: 20
+
+        Camera:
+            id: camera
+            resolution: (640, 480)
+            play: True
+            size_hint_x: 0.7
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 1  # Dark grey background
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10,]
+
+        Button:
+            text: 'Recognize Sign'
+            size_hint_x: 0.3
+            font_size: 24
+            font_name: 'Roboto'
+            background_color: 0.2, 0.6, 1, 1  # Blue background
+            color: 1, 1, 1, 1  # White text
+            background_normal: ''
+            background_down: ''
+            border: [10, 10, 10, 10]
+            on_press: root.recognize_sign()
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.6, 1, 1  # Blue background
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10,]
+
+    Button:
+        text: 'Common Phrases'
+        size_hint_y: None
+        height: 50
+        font_size: 24
+        font_name: 'Roboto'
+        background_color: 0.2, 0.6, 1, 1  # Blue background
+        color: 1, 1, 1, 1  # White text
+        background_normal: ''
+        background_down: ''
+        border: [10, 10, 10, 10]
+        on_press: root.show_common_phrases()
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.6, 1, 1  # Blue background
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [10,]
+
+    ScrollView:
+        Label:
+            id: phrases_label
+            text: ''
+            font_size: 24
+            font_name: 'Roboto'
+            text_size: self.width, None
+            size_hint_y: None
+            height: self.texture_size[1]
+            color: 1, 1, 1, 1  # White text
+            canvas.before:
+                Color:
+                    rgba: 0.2, 0.2, 0.2, 1  # Dark grey background
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10,]
+
+    FloatLayout:
+        Button:
+            text: 'Clear'
+            size_hint: None, None
+            size: 100, 50
+            pos_hint: {'right': 1, 'bottom': 1}
+            font_size: 18
+            font_name: 'Roboto'
+            background_color: 0.9, 0.3, 0.2, 1  # Red background
+            color: 1, 1, 1, 1  # White text
+            background_normal: ''
+            background_down: ''
+            border: [10, 10, 10, 10]
+            on_press: root.clear_phrases()
+            canvas.before:
+                Color:
+                    rgba: 0.9, 0.3, 0.2, 1  # Red background
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10,]
